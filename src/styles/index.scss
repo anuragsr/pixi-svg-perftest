@@ -5,3 +5,16 @@
 
 @import 'variables';
 @import 'scaffolding';
+
+html, body{ overflow: hidden; }
+
+html, body, #ctn-pixi {
+  height: 100%;
+  width: 100%;
+}
+
+#ctn-pixi {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+}
