@@ -41,7 +41,7 @@ module.exports = {
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      base: '/projects/pixi-svg-perf/', // use for prod only
+      // base: '/projects/pixi-svg-perf/', // use for prod only
       title: 'Pixi.js SVG Performance Test',
       favicon: paths.src + '/images/favicon.png',
       template: paths.src + '/template.html', // template file
