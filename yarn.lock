@@ -1042,6 +1042,40 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@pixi-essentials/area-allocator@~1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@pixi-essentials/area-allocator/-/area-allocator-1.0.3.tgz#c92e87460b22f91ac68b3805f8a06599c51680d7"
+  integrity sha512-gkml0EId/VToYUN8GNlYfKxkoABZ8I+5pK3ubg2QzWwxK+T8TGmwnwCmkeWXmah2RVX/OKhiVHaM+sEfDlQj9w==
+
+"@pixi-essentials/cull@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@pixi-essentials/cull/-/cull-1.1.0.tgz#e454b4c2475a8f7bcfb79d751a138a657ca7bb60"
+  integrity sha512-/IrobYs+ECZoYxGnmCbUBIcye0XX9ZRmeO9SLtOGI0DtsF+/r13OrGX42XUo8L76LMWurv78b5LdYxX33NrUNQ==
+
+"@pixi-essentials/gradients@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@pixi-essentials/gradients/-/gradients-0.0.4.tgz#c4a9b550761cb2029027de618f8e855699be0acd"
+  integrity sha512-A/JJ6GpqqW/Z8yleFoAdq/2ag/0tjh8ecb3blAJ9jknND4MZieXXJ3jDj75szLzX3pAokHoG0Y5AZeB3+2OgYA==
+
+"@pixi-essentials/svg@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@pixi-essentials/svg/-/svg-1.1.5.tgz#e4e62eaa469b37be75c9476d0dadef48af3677c8"
+  integrity sha512-UHHtA123j3I3NBiISm+afHzmK0IyDamDxP34UZuhve1fRBFqqtWg+9qKpEW20qK7rpvJ+7DHfoESXVwSXhoDmg==
+  dependencies:
+    "@pixi-essentials/cull" "^1.1.0"
+    "@pixi-essentials/gradients" "^0.0.4"
+    "@pixi-essentials/texture-allocator" "~1.0.5"
+    d-path-parser "^1.0.0"
+    libtess "~1.2.2"
+    tinycolor2 "^1.4.1"
+
+"@pixi-essentials/texture-allocator@~1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@pixi-essentials/texture-allocator/-/texture-allocator-1.0.5.tgz#734133d4512ff5b1786124134f73b731cad33bbe"
+  integrity sha512-F5edtHOJE+YyfxBe9j9YCLMoD+jknKqgJEWoH96nxiIbOkWNFyeBXfcPTszBWGtpFhBEspjyPowexuWCCuXFxw==
+  dependencies:
+    "@pixi-essentials/area-allocator" "~1.0.3"
+
 "@pixi/accessibility@7.1.2":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@pixi/accessibility/-/accessibility-7.1.2.tgz#1b02014d1c41f4f32cafbe57a40a732cef176ca4"
@@ -2362,6 +2396,11 @@ csso@^4.2.0:
   dependencies:
     css-tree "^1.1.2"
 
+d-path-parser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/d-path-parser/-/d-path-parser-1.0.0.tgz#87bfb41b44c55962b4efbe5da31502b5ee8b0ab7"
+  integrity sha512-CY3xMMjZ0LfS0YFTLcrcZxb79yaJzdnDu7KRTZxsbTjCH11PzQSxgTGRxsFb4F4o4dU069B1InS5n3TUDP1XUg==
+
 debug@2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3587,6 +3626,11 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+libtess@~1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/libtess/-/libtess-1.2.2.tgz#173eb52a1a57a0238fe48f05d12245074497f898"
+  integrity sha512-Nps8HPeVVcsmJxUvFLKVJcCgcz+1ajPTXDVAVPs6+giOQP4AHV31uZFFkh+CKow/bkB7GbZWKmwmit7myaqDSw==
 
 lilconfig@^2.0.3:
   version "2.0.5"
@@ -5451,6 +5495,11 @@ thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
+
+tinycolor2@^1.4.1:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
+  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
