@@ -56,9 +56,50 @@ class Background extends Container {
     this.bg = bg
     this.line = line
     this.addChild(bg, line)
+
+    resetViewport()
   }
   clear() {
     this.removeChild(this.bg, this.line)
+  }
+}
+
+class Outline extends Graphics {
+  constructor(opts) {
+    super()
+    // Required
+    this.type = opts.type
+    this.drawHeight = opts.drawHeight
+    this.drawWidth = opts.drawWidth
+
+    // Optional
+    this.color = opts.color || 0x000000
+    this.thickness = opts.thickness || 2
+    this.fillAlpha = opts.fillAlpha || 0
+    this.padding = opts.padding || 5
+
+    if (opts.startX !== 0) this.startX = -(this.drawWidth + this.padding) / 2
+    else this.startX = opts.startX - this.padding
+
+    if (opts.startY !== 0) this.startY = -(this.drawHeight + this.padding) / 2
+    else this.startY = opts.startY - this.padding
+
+    this.visible = false
+
+    this.draw()
+  }
+  draw() {
+    const { color, fillAlpha, thickness, drawHeight, drawWidth, padding } = this,
+      gr = this.lineStyle(thickness, color, 1).beginFill(color, fillAlpha)
+
+    let width, height, startX, startY
+
+    width = drawWidth + padding
+    height = drawHeight + padding
+    startX = this.startX
+    startY = this.startY
+
+    gr.drawRect(startX, startY, width, height)
   }
 }
 
@@ -98,7 +139,6 @@ const viewport = new Viewport({
   // interaction: app.renderer.plugins.interaction,
   interaction: app.renderer.events,
 })
-
 // Add the viewport to the stage
 app.stage.addChild(viewport)
 // Activate plugins
@@ -110,12 +150,13 @@ ctn.sortableChildren = true
 ctn.name = 'Main'
 viewport.addChild(ctn)
 
-const bg = new Background({
-  url: '/assets/bg.svg',
-  width: 2048,
-  height: 2048,
-})
+app.ctn = ctn
 
+const bg = new Background({
+  url: './assets/bg.svg',
+  width: 15000,
+  height: 15000,
+})
 ctn.addChild(bg)
 
 const resetViewport = () => {
@@ -166,6 +207,97 @@ const resetViewport = () => {
   }
 }
 
-// viewport.on('wheel', (e) => console.log(e))
-window.viewport = viewport
-window.resetViewport = resetViewport
+const addObject = async (url, position, scale) => {
+  const obj = await new PIXIFloorplanSVG({ url }).init()
+
+  const bounds = obj.getBounds()
+  obj.zIndex = 1
+  obj.pivot.set(bounds.width / 2, bounds.height / 2)
+  obj.scale.set(scale)
+  obj.position.set(position[0], position[1])
+  obj.cursor = 'pointer'
+  obj.interactive = true
+
+  ctn.addChild(obj)
+
+  // Outline
+  const pad = 5
+  const outline = new Outline({
+    type: 'svg',
+    padding: pad,
+    fillAlpha: 0.1,
+    startX: bounds.x - bounds.width / 2 - pad,
+    startY: bounds.y - bounds.height / 2 - pad,
+    drawHeight: bounds.height + pad,
+    drawWidth: bounds.width + pad,
+  })
+
+  obj.outline = outline
+  outline.position.set(position[0], position[1])
+  ctn.addChild(outline)
+}
+
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+const addDesks = () => {
+  for (let i = 0; i < 33; i++) {
+    const randomX = getRandomInt(0, 15000),
+      randomY = getRandomInt(0, 15000)
+    addObject(
+      'https://res.cloudinary.com/https-artishok-io/image/upload/v1675151578/map-svg/desk-4_vn5rsv.svg',
+      [randomX, randomY],
+      1
+    )
+  }
+
+  for (let i = 0; i < 33; i++) {
+    const randomX = getRandomInt(0, 15000),
+      randomY = getRandomInt(0, 15000)
+    addObject(
+      'https://res.cloudinary.com/https-artishok-io/image/upload/v1675151578/map-svg/desk-3_aaaa0q.svg',
+      [randomX, randomY],
+      1
+    )
+  }
+
+  for (let i = 0; i < 34; i++) {
+    const randomX = getRandomInt(0, 15000),
+      randomY = getRandomInt(0, 15000)
+    addObject(
+      'https://res.cloudinary.com/https-artishok-io/image/upload/v1675151578/map-svg/desk-2_plgvf1.svg',
+      [randomX, randomY],
+      1
+    )
+  }
+}
+
+const addChairs = () => {
+  for (let i = 0; i < 50; i++) {
+    const randomX = getRandomInt(0, 15000),
+      randomY = getRandomInt(0, 15000)
+    addObject('./assets/Chair1.svg', [randomX, randomY], 1)
+  }
+
+  for (let i = 0; i < 50; i++) {
+    const randomX = getRandomInt(0, 15000),
+      randomY = getRandomInt(0, 15000)
+    addObject('./assets/Chair2.svg', [randomX, randomY], 1)
+  }
+}
+
+const clear = () => {
+  while (ctn.children.length > 1) {
+    const child = ctn.children[ctn.children.length - 1]
+    if (child.name !== 'bg') ctn.removeChild(child, child.outline)
+  }
+}
+
+document.querySelector('#addDesks').addEventListener('click', addDesks, false)
+document.querySelector('#addChairs').addEventListener('click', addChairs, false)
+document.querySelector('#clear').addEventListener('click', clear, false)
+
+window.app = app

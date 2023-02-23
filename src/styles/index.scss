@@ -6,17 +6,27 @@
 @import 'variables';
 @import 'scaffolding';
 
-html, body{ overflow: hidden; }
-
-html, body, #ctn-pixi {
+#ctn-pixi {
   height: 100%;
   width: 100%;
 }
 
-#ctn-pixi {
+#ctn-pixi, #ctn-buttons {
   position: absolute;
   top: 0; left: 0;
   z-index: 1;
 }
 
-#stats{ left: unset!important; right: 0; }
+#stats{
+  left: unset!important; right: 0;
+  z-index: 3;
+}
+
+#ctn-buttons{
+  top: 20px; left: 20px;
+  border-radius: 5px;
+  background: rgba(#000, .8);
+  padding: 15px;
+  z-index: 2;
+  button{ padding: 10px; }
+}

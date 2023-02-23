@@ -50,7 +50,7 @@
   "dependencies": {
     "@pixi-essentials/svg": "^1.1.5",
     "gamestats.js": "^1.0.4",
-    "pixi-viewport": "^4.38.0",
-    "pixi.js": "^7.1.2"
+    "pixi-viewport": "^4.34.4",
+    "pixi.js": "^6.4.2"
   }
 }
